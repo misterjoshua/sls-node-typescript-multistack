@@ -1,5 +1,5 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/misterjoshua/sls-node-typescript-multistack/CI)
-[![Coverage Status](https://coveralls.io/repos/github/misterjoshua/sls-node-typescript-multistack/badge.svg?branch=ci)](https://coveralls.io/github/misterjoshua/sls-node-typescript-multistack?branch=ci)
+[![Coverage Status](https://coveralls.io/repos/github/misterjoshua/sls-node-typescript-multistack/badge.svg?branch=master)](https://coveralls.io/github/misterjoshua/sls-node-typescript-multistack?branch=master)
 
 # Serverless Framework TypeScript Multi-Stack Starter
 
