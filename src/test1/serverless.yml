@@ -1,0 +1,15 @@
+service:
+  name: test1
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment:
+
+functions:
+  foo:
+    handler: dist.foo
+    events:
+      - http:
+          path: foo
+          method: get

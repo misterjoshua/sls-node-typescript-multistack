@@ -1,0 +1,22 @@
+service:
+  name: test2
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment:
+    test1Api: ${cf:test1-${self:provider.stage}.ServiceEndpoint}
+
+functions:
+  foo2:
+    handler: dist.foo2
+    events:
+      - http:
+          path: foo2
+          method: get
+  fooProxy:
+    handler: dist.fooProxy
+    events:
+      - http:
+          path: foo-proxy
+          method: get
