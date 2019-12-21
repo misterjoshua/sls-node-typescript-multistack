@@ -13,3 +13,24 @@ functions:
       - http:
           path: foo
           method: get
+
+resources:
+  Outputs:
+    test1Api:
+      Value:
+        Fn::Join:
+          - ""
+          - - "https://"
+            - !Ref ApiGatewayRestApi
+            - ".execute-api."
+            - !Ref AWS::Region
+            - "."
+            - !Ref AWS::URLSuffix
+            - "/${self:provider.stage}"
+      Export:
+        Name:
+          Fn::Join:
+            - "-"
+            - - !Ref AWS::StackName
+              - "test1Api"
+

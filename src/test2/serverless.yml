@@ -5,7 +5,8 @@ provider:
   name: aws
   runtime: nodejs12.x
   environment:
-    test1Api: ${cf:test1-${self:provider.stage}.ServiceEndpoint}
+    test1Api:
+      Fn::ImportValue: "test1-${self:provider.stage}-test1Api"
 
 functions:
   foo2:

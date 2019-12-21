@@ -1,19 +1,22 @@
 {
   "license": "MIT",
   "scripts": {
-    "build": "run-s lint test build:prod",
-    "build:dev": "webpack --mode development",
-    "build:prod": "webpack --mode production",
-    "sls:deploy": "run-p sls:deploy:*",
-    "sls:deploy:test1": "cd dist/test1 && serverless deploy",
-    "sls:deploy:test2": "cd dist/test2 && serverless deploy",
-    "dev:deploy": "run-s build:dev sls:deploy",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "prettier": "pretty-quick",
+    "build:node:dev": "webpack --mode development",
+    "build:node:prod": "webpack --mode production",
+    "build:sls-package:test1": "cd dist/test1 && serverless package --package package",
+    "build:sls-package:test2": "cd dist/test2 && serverless package --package package",
+    "build:sls-package": "run-s build:sls-package:*",
+    "build": "run-s lint test build:node:prod build:sls-package",
+    "dev:package": "run-s build:node:dev build:sls-package",
+    "dev:deploy": "run-s build:node:dev deploy:sls",
+    "hook:pre-commit": "run-s prettier lint test",
     "lint": "eslint --fix src/**/*.ts",
-    "lint:init": "eslint --init",
-    "hook:pre-commit": "run-s prettier lint test"
+    "prettier": "pretty-quick",
+    "deploy:sls:test1": "cd dist/test1 && serverless deploy",
+    "deploy:sls:test2": "cd dist/test2 && serverless deploy",
+    "deploy:sls": "run-p deploy:sls:*",
+    "test:watch": "jest --watch",
+    "test": "jest --coverage"
   },
   "husky": {
     "hooks": {
@@ -38,6 +41,7 @@
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
+    "serverless": "^1.60.1",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.4",

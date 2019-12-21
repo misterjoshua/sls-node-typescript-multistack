@@ -1,6 +1,7 @@
 import { APIGatewayProxyHandler, APIGatewayProxyResult } from "aws-lambda";
 import { foo2String } from "../common/consts";
 import fetch from "node-fetch";
+import { test1Api } from "./config";
 
 export const foo2: APIGatewayProxyHandler = async (): Promise<APIGatewayProxyResult> => {
   return {
@@ -9,10 +10,8 @@ export const foo2: APIGatewayProxyHandler = async (): Promise<APIGatewayProxyRes
   };
 };
 
-const test1Api = process.env.test1Api;
-
-export const fooProxy: APIGatewayProxyHandler = async(): Promise<APIGatewayProxyResult> => {
-  const endpoint = `${test1Api}/foo`
+export const fooProxy: APIGatewayProxyHandler = async (): Promise<APIGatewayProxyResult> => {
+  const endpoint = `${test1Api}/foo`;
   const res = await fetch(endpoint);
   return {
     statusCode: 200,
@@ -20,7 +19,7 @@ export const fooProxy: APIGatewayProxyHandler = async(): Promise<APIGatewayProxy
       endpoint: endpoint,
       status: res.status,
       statusText: res.statusText,
-      text: await res.text(),
-    }) 
-  }
-}
+      text: await res.text()
+    })
+  };
+};
